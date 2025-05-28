@@ -1,0 +1,18 @@
+body {
+    background-color: #f8f9fa;
+}
+
+#calendar {
+    background-color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    padding: 1rem;
+}
+
+.fc-event {
+    cursor: pointer;
+}
+
+.fc-daygrid-event-dot {
+    display: none;
+}
