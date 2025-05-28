@@ -6,5 +6,5 @@ define('DB_PASS', 'twoje_mocne_haslo');
 define('DB_NAME', 'calendar_app');
 
 // Konfiguracja aplikacji
-define('BASE_URL', 'http://twoja_domena.com');
+define('BASE_URL', 'https://yellow-cat3048.byst.re/');
 define('SITE_NAME', 'Mój Kalendarz');
