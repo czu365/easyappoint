@@ -67,12 +67,13 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('eventStart').value = info.startStr;
             document.getElementById('eventEnd').value = info.endStr;
             guestModal.show();
-        },
-        dateClick: function(info) {
-            document.getElementById('eventStart').value = info.dateStr + "T09:00";
-            document.getElementById('eventEnd').value = info.dateStr + "T09:30";
-            guestModal.show();
         }
+    });
+    // Obsługa kliknięcia w pojedynczy dzień
+    calendar.on('dateClick', function(info) {
+        document.getElementById('eventStart').value = info.dateStr + "T09:00";
+        document.getElementById('eventEnd').value = info.dateStr + "T09:30";
+        guestModal.show();
     });
     calendar.render();
 
