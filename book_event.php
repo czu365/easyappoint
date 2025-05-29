@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 header('Content-Type: application/json');
 
 // Połącz z bazą (dostosuj dane logowania)
-$conn = new mysqli('localhost', 'user', 'haslo', 'nazwa_bazy');
+$conn = new mysqli('localhost', 'easyappoint_user', 'Zamek123@', 'calendar_app');
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'error' => 'Błąd połączenia z bazą']);
     exit;
