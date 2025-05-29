@@ -9,10 +9,11 @@ $start = $_POST['start'] ?? '';
 $end = $_POST['end'] ?? '';
 $client_name = $_POST['client_name'] ?? '';
 $client_email = $_POST['client_email'] ?? '';
+$description = $_POST['description'] ?? '';
 
 if ($title && $start && $client_name && $client_email) {
-    $stmt = $conn->prepare("INSERT INTO events (title, start, end, client_name, client_email, status, created_at) VALUES (?, ?, ?, ?, ?, 'pending', NOW())");
-    $stmt->bind_param("sssss", $title, $start, $end, $client_name, $client_email);
+    $stmt = $conn->prepare("INSERT INTO events (title, start, end, client_name, client_email, description, status, created_at) VALUES (?, ?, ?, ?, ?, ?, 'pending', NOW())");
+    $stmt->bind_param("ssssss", $title, $start, $end, $client_name, $client_email, $description);
     $stmt->execute();
     echo json_encode(['success' => true]);
 } else {
