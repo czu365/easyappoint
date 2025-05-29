@@ -86,6 +86,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     guestForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        // Pobierz datę z ukrytego pola i godzinę z inputa
+        const date = document.getElementById('eventStart').value.substring(0, 10); // yyyy-mm-dd
+        const time = document.getElementById('eventTime').value; // hh:mm
+        if (date && time) {
+            // Ustaw pełną datę i godzinę w polach start/end
+            document.getElementById('eventStart').value = date + 'T' + time;
+            // Możesz ustawić koniec np. +30 minut
+            const [h, m] = time.split(':');
+            const endDate = new Date(date + 'T' + time);
+            endDate.setMinutes(endDate.getMinutes() + 30);
+            document.getElementById('eventEnd').value = endDate.toISOString().slice(0,16);
+        }
         const formData = new FormData(guestForm);
         fetch('book_event.php', {
             method: 'POST',
