@@ -26,12 +26,16 @@ if (empty($start) || empty($end)) {
 
 // Zapisz do bazy
 $stmt = $conn->prepare("INSERT INTO events (title, client_name, client_email, description, start, end) VALUES (?, ?, ?, ?, ?, ?)");
+if (!$stmt) {
+    echo json_encode(['success' => false, 'error' => 'Błąd prepare: ' . $conn->error]);
+    exit;
+}
 $stmt->bind_param("ssssss", $title, $client_name, $client_email, $description, $start, $end);
 
 if ($stmt->execute()) {
     echo json_encode(['success' => true]);
 } else {
-    echo json_encode(['success' => false, 'error' => 'Błąd zapisu']);
+    echo json_encode(['success' => false, 'error' => 'Błąd zapisu: ' . $stmt->error]);
 }
 $stmt->close();
 $conn->close();
