@@ -80,6 +80,6 @@ $title = SITE_NAME . ' - Kalendarz';
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid/main.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction/main.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="includes/assets/js/script.js"></script>
 </body>
 </html>
