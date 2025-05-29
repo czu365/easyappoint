@@ -27,4 +27,5 @@ class Database {
     public function escape($string) {
         return $this->connection->real_escape_string($string);
     }
+    
 }
