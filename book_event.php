@@ -29,4 +29,4 @@ if ($title && $start && $client_name && $client_email) {
     }
 } else {
     echo json_encode(['success' => false, 'error' => 'Missing fields']);
-}
+} // Do sprawdzenia POST 
