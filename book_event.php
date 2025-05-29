@@ -18,6 +18,12 @@ $description = $_POST['description'] ?? '';
 $start = $_POST['start'] ?? '';
 $end = $_POST['end'] ?? '';
 
+// WALIDACJA – dodaj to:
+if (empty($start) || empty($end)) {
+    echo json_encode(['success' => false, 'error' => 'Brak daty/godziny']);
+    exit;
+}
+
 // Zapisz do bazy
 $stmt = $conn->prepare("INSERT INTO events (title, client_name, client_email, description, start, end) VALUES (?, ?, ?, ?, ?, ?)");
 $stmt->bind_param("ssssss", $title, $client_name, $client_email, $description, $start, $end);
