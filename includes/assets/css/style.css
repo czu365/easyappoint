@@ -3,7 +3,12 @@
 body {
     background: #f7f8fa;
     font-family: 'Roboto', Arial, sans-serif;
-    font-size: 0.8em; /* Zmniejsza tekst o 20% */
+    font-size: 0.8em;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 #calendar {
@@ -12,10 +17,11 @@ body {
     box-shadow: 0 4px 24px 0 rgba(60, 64, 67, 0.08);
     padding: 2rem 2.5rem;
     margin-top: 2.5rem;
-    margin-bottom: 2.5rem; /* Dodaje odstęp na dole */
+    margin-bottom: 4rem !important; /* Większy odstęp na dole */
     border: none;
     transform: scale(0.8);      /* Zmniejsza całość o 20% */
     transform-origin: top center; /* Skaluje względem góry */
+    font-size: 0.8em; /* Zmniejsza wszystko w kalendarzu */
 }
 
 .fc-toolbar {
@@ -66,6 +72,7 @@ body {
     margin-bottom: 2px;
     transition: box-shadow 0.2s;
     font-size: 1em;
+    animation: fadeInEvent 0.5s;
 }
 .fc-event:hover {
     box-shadow: 0 4px 16px rgba(60, 64, 67, 0.16);
@@ -94,6 +101,11 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(60, 64, 67, 0.18);
     border: 1px solid rgba(255,255,255,0.18);
+    animation: frostedIn 0.5s cubic-bezier(.4,0,.2,1);
+}
+@keyframes frostedIn {
+    from { opacity: 0; transform: scale(0.95);}
+    to { opacity: 1; transform: scale(1);}
 }
 
 .modal-header, .modal-footer {
@@ -133,4 +145,13 @@ input.form-control:focus, textarea.form-control:focus, select.form-select:focus 
 
 .btn-secondary {
     border-radius: 8px;
+}
+
+/* Animacja pojawiania się eventów */
+.fc-event {
+    animation: fadeInEvent 0.5s;
+}
+@keyframes fadeInEvent {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
 }

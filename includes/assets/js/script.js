@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const deleteBtn = document.getElementById('deleteEvent');
     
     const calendar = new FullCalendar.Calendar(calendarEl, {
+        locale: 'pl',
         initialView: 'dayGridMonth',
         headerToolbar: {
             left: 'prev,next today',
