@@ -3,6 +3,7 @@
 body {
     background: #f7f8fa;
     font-family: 'Roboto', Arial, sans-serif;
+    font-size: 0.8em; /* Zmniejsza tekst o 20% */
 }
 
 #calendar {
@@ -11,7 +12,10 @@ body {
     box-shadow: 0 4px 24px 0 rgba(60, 64, 67, 0.08);
     padding: 2rem 2.5rem;
     margin-top: 2.5rem;
+    margin-bottom: 2.5rem; /* Dodaje odstęp na dole */
     border: none;
+    transform: scale(0.8);      /* Zmniejsza całość o 20% */
+    transform-origin: top center; /* Skaluje względem góry */
 }
 
 .fc-toolbar {
