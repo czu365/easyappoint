@@ -62,25 +62,34 @@ body {
 }
 
 .fc-event {
-    background: #fff !important;
-    color: #596163 !important;
-    border: 2px solid #2d4d77 !important;
-    border-radius: 20px !important;
+    background: #43a047 !important;      /* zielone tło */
+    color: #fff !important;              /* jasny tekst */
+    border: 8px solid #388e3c !important;/* gruby zielony border (możesz dać 30px, ale to bardzo dużo!) */
+    border-radius: 30px !important;      /* mocno zaokrąglone */
     box-shadow: 0 2px 8px rgba(60, 64, 67, 0.08);
     font-weight: 500;
-    padding: 2px 10px;
+    padding: 2px 10px !important;        /* padding lewo/prawo */
     margin-bottom: 2px;
     transition: box-shadow 0.2s;
     font-size: 1em;
     animation: fadeInEvent 0.5s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 .fc-event:hover {
     box-shadow: 0 4px 16px rgba(60, 64, 67, 0.16);
-    background: #e8f0fe !important;
+    background: #388e3c !important;
+    color: #fff !important;
 }
 
 .fc-daygrid-event-dot {
     display: none;
+}
+
+/* Opcjonalnie: zmień kolor kropek/dot */
+.fc-daygrid-event-dot {
+    background: #fff !important;
 }
 
 .fc-col-header-cell {
