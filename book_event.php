@@ -16,18 +16,19 @@ $client_email = $_POST['client_email'] ?? '';
 $description = $_POST['description'] ?? '';
 $start = $_POST['start'] ?? '';
 $end = $_POST['end'] ?? '';
+$user_id = 1; // lub inny domyślny ID właściciela kalendarza
 
 if (empty($start) || empty($end)) {
     echo json_encode(['success' => false, 'error' => 'Brak daty/godziny']);
     exit;
 }
 
-$stmt = $conn->prepare("INSERT INTO events (title, client_name, client_email, description, start, end) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt = $conn->prepare("INSERT INTO events (title, client_name, client_email, description, start, end, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
 if (!$stmt) {
     echo json_encode(['success' => false, 'error' => 'Błąd prepare: ' . $conn->error]);
     exit;
 }
-$stmt->bind_param("ssssss", $title, $client_name, $client_email, $description, $start, $end);
+$stmt->bind_param("ssssssi", $title, $client_name, $client_email, $description, $start, $end, $user_id);
 if ($stmt->execute()) {
     echo json_encode(['success' => true]);
 } else {
