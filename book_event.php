@@ -1,4 +1,5 @@
 <?php
+file_put_contents('debug_post.txt', print_r($_POST, true));
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 header('Content-Type: application/json');

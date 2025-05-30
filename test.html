@@ -74,11 +74,13 @@ document.addEventListener('DOMContentLoaded', function() {
         dateClick: function(info) {
             document.getElementById('eventStart').value = info.dateStr + "T09:00";
             document.getElementById('eventEnd').value = info.dateStr + "T09:30";
+            document.getElementById('eventTime').value = "09:00";
             guestModal.show();
         },
         select: function(info) {
             document.getElementById('eventStart').value = info.startStr;
             document.getElementById('eventEnd').value = info.endStr;
+            document.getElementById('eventTime').value = info.startStr.substring(11,16) || "09:00";
             guestModal.show();
         }
     });
@@ -86,18 +88,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     guestForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        // Pobierz datę z ukrytego pola i godzinę z inputa
         const date = document.getElementById('eventStart').value.substring(0, 10); // yyyy-mm-dd
         const time = document.getElementById('eventTime').value; // hh:mm
-        if (date && time) {
-            // Ustaw pełną datę i godzinę w polach start/end
-            document.getElementById('eventStart').value = date + 'T' + time;
-            // Możesz ustawić koniec np. +30 minut
-            const [h, m] = time.split(':');
-            const endDate = new Date(date + 'T' + time);
-            endDate.setMinutes(endDate.getMinutes() + 30);
-            document.getElementById('eventEnd').value = endDate.toISOString().slice(0,16);
+
+        if (!date || !time) {
+            alert('Wybierz datę i godzinę!');
+            return;
         }
+
+        // Ustaw pełną datę i godzinę w polach start/end
+        document.getElementById('eventStart').value = date + 'T' + time;
+        const [h, m] = time.split(':');
+        const endDate = new Date(date + 'T' + time);
+        endDate.setMinutes(endDate.getMinutes() + 30);
+        document.getElementById('eventEnd').value = endDate.toISOString().slice(0,16);
+
         const formData = new FormData(guestForm);
         fetch('book_event.php', {
             method: 'POST',
@@ -110,11 +115,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 calendar.refetchEvents();
                 alert('Rezerwacja przyjęta!');
             } else {
-                alert('Błąd rezerwacji!');
+                alert('Błąd rezerwacji: ' + (data.error || ''));
             }
+        })
+        .catch(err => {
+            alert('Błąd połączenia z serwerem!');
         });
     });
 });
 </script>
+<?php
+file_put_contents('debug_post.txt', print_r($_POST, true));
+?>
 </body>
 </html>
